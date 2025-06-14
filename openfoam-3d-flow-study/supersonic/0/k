@@ -1,0 +1,42 @@
+FoamFile
+{
+	version	2.0;
+	format	binary;
+	class	volScalarField;
+	location	"0";
+	object	k;
+	arch	"LSB;label=32;scalar=64";
+}
+dimensions	[0 2 -2 0 0 0 0];
+internalField	uniform 0.009999999776482582;
+boundaryField
+{
+	outlet
+	{
+		type	zeroGradient;
+	}
+	inlet
+	{
+		type	turbulentIntensityKineticEnergyInlet;
+		value	uniform 0.009999999776482582;
+		intensity	0.05;
+	}
+	sym1
+	{
+		type	symmetry;
+	}
+	sym2
+	{
+		type	symmetry;
+	}
+	walls
+	{
+		type	kqRWallFunction;
+		value	uniform 0.009999999776482582;
+	}
+	noseCone
+	{
+		type	kqRWallFunction;
+		value	uniform 0.009999999776482582;
+	}
+}

@@ -1,0 +1,73 @@
+FoamFile
+{
+	version	2.0;
+	class	dictionary;
+	format	ascii;
+	location	"system";
+	object	fvSolution;
+}
+solvers
+{
+	rho
+	{
+		solver	diagonal;
+	}
+	rhoU
+	{
+		solver	diagonal;
+	}
+	rhoE
+	{
+		solver	diagonal;
+	}
+	U
+	{
+		solver	smoothSolver;
+		smoother	GaussSeidel;
+		nSweeps	2;
+		relTol	1.0E-4;
+		tolerance	1.0E-6;
+		maxIter	100;
+	}
+	h
+	{
+		solver	PCG;
+		relTol	1.0E-4;
+		preconditioner	DIC;
+		tolerance	1.0E-6;
+		maxIter	100;
+	}
+	rho
+	{
+		solver	diagonal;
+	}
+	rhoU
+	{
+		solver	diagonal;
+	}
+	rhoE
+	{
+		solver	diagonal;
+	}
+	k
+	{
+		solver	PBiCGStab;
+		relTol	1.0E-4;
+		preconditioner	DILU;
+		tolerance	1.0E-6;
+		maxIter	100;
+	}
+	omega
+	{
+		solver	PBiCGStab;
+		relTol	1.0E-4;
+		preconditioner	DILU;
+		tolerance	1.0E-6;
+		maxIter	100;
+	}
+}
+relaxationFactors
+{
+	k	0.7;
+	omega	0.7;
+}

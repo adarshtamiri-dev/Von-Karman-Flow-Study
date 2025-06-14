@@ -1,0 +1,63 @@
+FoamFile
+{
+	class	dictionary;
+	format	ascii;
+	location	system;
+	object	controlDict;
+	version	2.0;
+}
+adjustTimeStep	false;
+application	rhoCentralFoam;
+deltaT	1e-05;
+endTime	10;
+maxCo	2;
+maxDeltaT	1;
+purgeWrite	0;
+startFrom	latestTime;
+startTime	0;
+stopAt	endTime;
+timeFormat	general;
+timePrecision	6;
+writeControl	adjustableRunTime;
+writeInterval	100;
+writePrecision	7;
+runTimeModifiable	true;
+timeFormat	general;
+timePrecision	6;
+writeCompression	false;
+writeFormat	binary;
+writePrecision	7;
+libs	("libfvMotionSolvers.dll" "libturbulenceModels.dll" "libturbulenceModelSchemes.dll" "libfvOptions.dll");
+functions
+{
+	forceCoefficientMonitorOnNoseConeInDefault
+	{
+		type	forceCoeffs;
+		U	U;
+		Aref	1;
+		dragDir	(1 0 0);
+		lRef	1;
+		liftDir	(0 0 1);
+		magUInf	1;
+		pitchAxis	(0 1 0);
+		CofR	(0 0 0);
+		coefficients	(Cd Cl CmPitch);
+		executeInterval	1;
+		enabled	true;
+		log	true;
+		patches	(noseCone);
+		rhoInf	1.0;
+		writeInterval	1;
+		libs	("libforces.dll");
+		p	p;
+		rho	rhoInf;
+	}
+}
+OptimisationSwitches
+{
+	fileHandler	uncollated;
+	fileModificationSkew	0;
+	maxMasterFileBufferSize	1.0E9;
+	maxThreadFileBufferSize	1.0E9;
+	mpiBufferSize	200000000;
+}

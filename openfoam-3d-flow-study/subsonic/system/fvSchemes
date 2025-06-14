@@ -1,0 +1,51 @@
+FoamFile
+{
+	version	2.0;
+	class	dictionary;
+	format	ascii;
+	location	"system";
+	object	fvSchemes;
+}
+fluxScheme	Kurganov;
+ddtSchemes
+{
+	default	Euler;
+}
+gradSchemes
+{
+	default	leastSquares;
+}
+divSchemes
+{
+	div(((rho*nuEff)*dev2(T(grad(U)))))	Gauss linear;
+	div(R)	Gauss linear;
+	div(tauMC)	Gauss linear;
+	default	Gauss upwind;
+	div(phi,k)	Gauss linearUpwind grad(k);
+	div(phi,omega)	Gauss linearUpwind grad(omega);
+	div(phi,alphat)	Gauss linearUpwind grad(alphat);
+}
+laplacianSchemes
+{
+	default	Gauss linear corrected;
+}
+interpolationSchemes
+{
+	default	linear;
+	reconstruct(rho)	vanLeer;
+	reconstruct(U)	vanLeerV;
+	reconstruct(T)	vanLeer;
+}
+snGradSchemes
+{
+	default	corrected;
+}
+fluxRequired
+{
+	default	no;
+}
+wallDist
+{
+	method	meshWave;
+	nRequired	false;
+}

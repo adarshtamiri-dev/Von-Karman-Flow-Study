@@ -1,0 +1,42 @@
+FoamFile
+{
+	version	2.0;
+	format	binary;
+	class	volScalarField;
+	location	"0";
+	object	omega;
+	arch	"LSB;label=32;scalar=64";
+}
+dimensions	[0 0 -1 0 0 0 0];
+internalField	uniform 1;
+boundaryField
+{
+	outlet
+	{
+		type	zeroGradient;
+	}
+	inlet
+	{
+		type	turbulentMixingLengthFrequencyInlet;
+		value	uniform 1;
+		mixingLength	0.001;
+	}
+	sym1
+	{
+		type	symmetry;
+	}
+	sym2
+	{
+		type	symmetry;
+	}
+	walls
+	{
+		type	omegaWallFunction;
+		value	uniform 1;
+	}
+	noseCone
+	{
+		type	omegaWallFunction;
+		value	uniform 1;
+	}
+}

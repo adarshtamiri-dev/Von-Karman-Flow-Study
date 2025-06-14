@@ -1,0 +1,39 @@
+FoamFile
+{
+	version	2.0;
+	format	binary;
+	class	volVectorField;
+	location	"0";
+	object	U;
+	arch	"LSB;label=32;scalar=64";
+}
+dimensions	[0 1 -1 0 0 0 0];
+internalField	uniform (274.4 0 0);
+boundaryField
+{
+	outlet
+	{
+		type	zeroGradient;
+	}
+	inlet
+	{
+		type	surfaceNormalFixedValue;
+		refValue	uniform -274.4;
+	}
+	sym1
+	{
+		type	symmetry;
+	}
+	sym2
+	{
+		type	symmetry;
+	}
+	walls
+	{
+		type	noSlip;
+	}
+	noseCone
+	{
+		type	noSlip;
+	}
+}
